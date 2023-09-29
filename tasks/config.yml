@@ -1,0 +1,19 @@
+---
+- name: configuration of apche server
+  template:
+    src: /home/fahad/playbooks/index.j2
+    dest: /var/www/html/index.html
+    force: true
+
+- name: configuring firewall
+  firewalld:
+    service: http
+    permanent: true
+    immediate: true
+    state: enabled
+
+- name: Reloading firewall
+  service:
+    name: firewalld
+    state: reloaded
+...
